@@ -841,28 +841,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
               ),
       );
 
-      // When wrapped in the Positioned widget, the suggestions box widget
-      // is placed before the Scaffold semantically. In order to have the
-      // suggestions box navigable from the search input or keyboard,
-      // Semantics > Align > ConstrainedBox are needed. This does not change
-      // the style visually. However, when VO/TB are not enabled it is
-      // necessary to use the Positioned widget to allow the elements to be
-      // properly tappable.
-      return MediaQuery.of(context).accessibleNavigation
-          ? Semantics(
-              container: true,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: w),
-                  child: compositedFollower,
-                ),
-              ),
-            )
-          : Positioned(
-              width: w,
-              child: compositedFollower,
-            );
+      return Positioned(width: w, child: compositedFollower);
     });
   }
 
